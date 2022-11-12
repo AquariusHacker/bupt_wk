@@ -1,0 +1,32 @@
+char CaesarCipher ( char* IN, const int D )
+{
+    int CC = *IN;
+    if (CC == '\n')
+        CC = 0;
+    else if (CC >= 'A' && CC <= 'Z')
+    {
+         CC = CC + D;
+         if (CC > 'Z')
+            CC = CC + ('a' - 'Z' - 1);
+         else if (CC < 'A')
+            CC = CC - ('A' - '9' - 1);
+    }
+    else if (CC >= 'a' && CC <= 'z')
+    {
+        CC = CC + D;
+        if (CC > 'z')
+            CC = CC - ('z' - '0' + 1);
+        else if (CC < 'a')
+            CC = CC - ('a' - 'Z' - 1);
+    }
+    else if (CC >= '0' && CC <= '9')
+    {
+        CC = CC + D;
+        if (CC > '9')
+            CC = CC + ('A' - '9' - 1);
+        else if (CC < '0')
+            CC = CC + ('z' - '0' + 1);
+    }
+    *IN = CC;
+    return 1;
+}
