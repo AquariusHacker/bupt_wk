@@ -1,0 +1,67 @@
+#include<stdio.h>
+    int main()
+    {
+        float s, sum, min, max, count;
+        s = sum = min = max = count = 0.0;
+        while (scanf_s("%f", &s) != EOF)
+        {
+            if (s >= 0)
+            {
+                if (min == 0)
+                {
+                    min = s;
+                    count++;
+                    sum += s;
+                }
+                else if (max == 0)
+                {
+                    max = s;
+                    count++;
+                    sum += s;
+                }
+                else if (s > max)
+                {
+                    max = s;
+                    sum += s;
+                    count++;
+                }
+                else if (s < min)
+                {
+                    min = s;
+                    sum += s;
+                    count++;
+                }
+                else if ((s >= min && s <= max) || s == 0)
+                {
+                    sum += s;
+                    count++;
+                }
+                float centre = 0;
+                if (max < min && max != 0)
+                {
+                    centre = max;
+                    max = min;
+                    min = centre;
+                }
+            }
+            else {
+                if (count >= 3)
+                {
+                    sum -= (min + max);
+                    break;
+                }
+            }
+        }
+        printf("%.1f", sum / (count - 2));
+        return 0;
+    }
+    	///体操、跳水等体育比赛中，有多个裁判给运动员动作打分（十分制），在计算运动员最终得分的时候，会去掉一个最高分，去掉一个最低分，剩余的得分求平均，作为运动员的最终成绩。
+    	/*编写一段代码，从键盘输入每一个裁判员的打分，按照以上原则求运动员的最终得分。
+    		要求：
+    		1、每次输入一个打分（不少于3个）
+    		2、输入的打分可以是小数（十分制，默认小数点后保留1位）
+    		3、输入打分个数不定，可以多个
+    		4、输入 - 1 的时候，结束输入（可以输入负数的时候结束输入）
+    		5、去掉一个最高分，去掉一个最低分，计算输入打分的平均分
+    		6、输出最终打分，小数点后保留1位
+		7、建议使用while / do - while循环实现*/
